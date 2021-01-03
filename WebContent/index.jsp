@@ -21,5 +21,7 @@
 		<%
 			session.setAttribute("curso", "curso de JSP");
 		%>
+		</br>
+		<a href="redireciona.jsp">pagina que testar redirecionamento</a>
 </body>
 </html>
