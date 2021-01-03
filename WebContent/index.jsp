@@ -17,5 +17,9 @@
 			<input type="text" id="nome" name="nome" />
 			<input type="submit" value="Enviar" />
 		</form>
+		
+		<%
+			session.setAttribute("curso", "curso de JSP");
+		%>
 </body>
 </html>
