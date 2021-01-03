@@ -24,5 +24,6 @@
 		</br>
 		<h4><a href="redireciona.jsp">pagina que testar redirecionamento</a></h4>
 		<h4><a href="testa-include.jsp">pagina para usar include jsp</a></h4>
+		<h4><a href="usa-bean.jsp">pagina para usar a classe BeanCursoJsp</a></h4>
 </body>
 </html>
