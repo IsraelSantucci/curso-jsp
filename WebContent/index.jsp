@@ -22,6 +22,7 @@
 			session.setAttribute("curso", "curso de JSP");
 		%>
 		</br>
-		<a href="redireciona.jsp">pagina que testar redirecionamento</a>
+		<h4><a href="redireciona.jsp">pagina que testar redirecionamento</a></h4>
+		<h4><a href="testa-include.jsp">pagina para usar include jsp</a></h4>
 </body>
 </html>
