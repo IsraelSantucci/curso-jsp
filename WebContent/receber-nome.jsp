@@ -7,11 +7,22 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<!-- directivas jsp -->
+	<%@ page import="java.util.Date"%>
+	<%= "Data de hoje: "+new Date() %>
+	
+	<%@ page errorPage="erro-pagina.jsp" %>
+	</br>
+	
+	<!-- valor recebido da pagina inicial -->
 	<% 
 		String nome = "nome recebido: " + request.getParameter("nome");
 		out.print(nome); 
 	%>
+	
+	
 	</br></br></br>
+	<!--  tag declarativa -->
 	<%! int cont = 27; 
 		
 		public int soma(int a, int b){
@@ -29,5 +40,7 @@
 		out.println("</br> path: "+ application.getContextPath());
 		out.println("</br> curso: " + session.getAttribute("curso"));
 	%>
+	
+	
 </body>
 </html>
