@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     
     <jsp:useBean id="calcula" class="beans.BeanCursoJsp" type="beans.BeanCursoJsp" scope="page"></jsp:useBean>
-    <%@page import="java.lang.Math" id="math" %>
+    
 <!DOCTYPE html>
 <html>
 <head>

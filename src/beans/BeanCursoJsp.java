@@ -3,6 +3,6 @@ package beans;
 public class BeanCursoJsp {
 	
 	public int calcula(int numero) {
-		return numero*100 Math.;
+		return numero*100;
 	}
 }
