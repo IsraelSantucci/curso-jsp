@@ -29,5 +29,22 @@
 			</tr>
 		</table>
 	</form>
+	</br> ================================================================ </br></br>
+	<h3>Pegando parametro usando expression language</h3>
+	<form action="pegar-parametro.jsp" method="post">
+		<table>
+			<tr>
+				<td>nome:</td>
+				<td><input type="text" name="nome" /></td>
+			</tr>
+			<tr>
+				<td>profissao:</td>
+				<td><input type="text" name="profissao" /></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Enviar" /><td>
+			</tr>
+		</table>
+	</form>
 </body>
 </html>
