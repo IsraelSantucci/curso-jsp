@@ -26,5 +26,6 @@
 		<h4><a href="testa-include.jsp">pagina para usar include jsp</a></h4>
 		<h4><a href="usa-bean.jsp">pagina para usar a classe BeanCursoJsp</a></h4>
 		<h4><a href="testando-cadastro-aluno.jsp">Cadastro aluno</a></h4>
+		<h4><a href="testando-session-scope.jsp">Testando a passagem de parametro com Session</a></h4>
 </body>
 </html>
