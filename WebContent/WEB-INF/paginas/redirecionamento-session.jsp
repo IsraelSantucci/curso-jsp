@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	${sessionScope.curso }
+	<div style="margin:auto; text-align: center">
+		<h2 style="color: green; font-size: 40px;">-Curso-</h2>
+		<p style="color: blue; font-size: 24px">${sessionScope.curso }</p>
+	</div>
 </body>
 </html>
