@@ -25,11 +25,11 @@ public class LoginServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Login l = new Login();
+		Login login = new Login();
 		String usuario = request.getParameter("usuario");
 		String senha = request.getParameter("senha");
 		
-		if(l.logar(usuario, senha)) {
+		if(login.validarLoginSenha(usuario, senha)) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/paginas/acesso-permitido.jsp");
 			dispatcher.forward(request, response);
 		}else {
