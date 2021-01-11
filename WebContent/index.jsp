@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@page import="connection.SingleConnection" %>
+    <%@page import="java.sql.Connection" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +22,7 @@
 		
 		<%
 			session.setAttribute("curso", "curso de JSP");
+			Connection conexao = SingleConnection.getConnection();
 		%>
 		</br>
 		<h4><a href="redireciona.jsp">pagina que testar redirecionamento</a></h4>
