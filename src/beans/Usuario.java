@@ -1,6 +1,6 @@
 package beans;
 
-public class Login {
+public class Usuario {
 
 	private String login;
 	private String senha;

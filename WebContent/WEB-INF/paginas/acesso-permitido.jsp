@@ -4,11 +4,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Sisteminha de Teste</title>
 </head>
 <body>
-	<h1>Acesso liberado  </h1>
-	
-	<h2>seja bem-vindo</h2>
+	<h1>Sisteminha de Teste</h1>
+	<a href="cadastrar-usuario.jsp"> Cadastrar usuario</a>
 </body>
 </html>

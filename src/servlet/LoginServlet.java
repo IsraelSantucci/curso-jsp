@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.Login;
+import beans.Usuario;
 import dao.LoginDAO;
 
 @WebServlet("/LoginServlet")
@@ -29,7 +29,7 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Login login = new Login();
+		Usuario login = new Usuario();
 		String usuario = request.getParameter("usuario");
 		String senha = request.getParameter("senha");
 		
