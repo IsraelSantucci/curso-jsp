@@ -23,7 +23,8 @@
 			<tr><td><input type="submit" value="cadastrar"></td></tr>
 		</table>
 	</form>
-	
+	<br>
+	<a href="index.jsp">voltar para inicio</a>
 	<br><br>
 	<h2>Usuarios Cadastrados</h2>
 	<table>
@@ -32,6 +33,7 @@
 			<tr>
 				<td><c:out value="${usuario.login }"></c:out></td>
 				<td><c:out value="${usuario.senha }"></c:out></td>
+				<td><a href="CadastrarUsuario?acao=delete&usuario=${usuario.login}">Excluir</a></td>
 			</tr>
 		</c:forEach>
 	</table>
