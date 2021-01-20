@@ -29,10 +29,10 @@ public class CadastrarUsuario extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		String acao = request.getParameter("acao");
-		String usuario = request.getParameter("usuario");
+		String login = request.getParameter("login");
 		
 		if(acao.equals("delete")) {
-			dao.deletar(usuario);
+			dao.deletar(login);
 			
 			try {
 				List<Usuario> usuarios = dao.listar();
@@ -42,22 +42,37 @@ public class CadastrarUsuario extends HttpServlet {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
+		} else if(acao.equals("editar")) {
+			try {
+				Usuario usuario = dao.consultar(login);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/cadastrar-usuario.jsp");
+				request.setAttribute("usuario", usuario);
+				dispatcher.forward(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		
 		
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String id = request.getParameter("id");
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
 		
 		Usuario usuario = new Usuario();
+		usuario.setId(!id.isEmpty()? Long.parseLong(id) : 0);
 		usuario.setLogin(login);
 		usuario.setSenha(senha);
 		
-		dao.salvar(usuario);
+		if(id == null || id.isEmpty()) {
+			dao.salvar(usuario);
+		}else {
+			dao.atualizar(usuario);
+		}
+		
 		
 		
 		try {
