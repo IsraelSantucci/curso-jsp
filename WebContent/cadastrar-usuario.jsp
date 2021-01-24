@@ -6,47 +6,60 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Cadastrar Usuarios</title>
+<link rel="stylesheet" href="resources/css/cadastro.css">
+<link rel="stylesheet" href="resources/css/table.css">
 </head>
 <body>
-	<h1>Cadastrar Usuarios</h1>
 
-	<form action="CadastrarUsuario" method="post">
-		<table>
-			<tr>
-				<td>Id:</td>
-				<td><input type="text" name="id" readonly="readonly" value="${usuario.id }"/></td>
-			</tr>
-			<tr>
-				<td>Login:</td>
-				<td><input type="text" name="login" value="${usuario.login }"/></td>
-			</tr>
-			<tr>
-				<td>Senha:</td>
-				<td><input type="password" name="senha" value="${usuario.senha }"/></td>
-			</tr>
-			<tr>
-				<td><input type="submit" value="cadastrar"></td>
-			</tr>
-		</table>
-	</form>
+
+	<div class="form-style-6">
+		<h1>Cadastrar Usuarios</h1>
+		<form action="CadastrarUsuario" method="post">
+			<label for="id">Id: </label> <input type="text" name="id"
+				readonly="readonly" value="${usuario.id }" /> <label for="login">Login:</label>
+			<input type="text" name="login" value="${usuario.login }" />
+
+			<labelfor="senha"> Senha:</label> <input type="password"
+				name="senha" value="${usuario.senha }" /> <input type="submit"
+				value="Cadastrar">
+		</form>
+	</div>
 	<br>
 	<a href="index.jsp">voltar para inicio</a>
 	<br>
 	<br>
-	<h2>Usuarios Cadastrados</h2>
-	<table >
+	<div class="div-tabela">
+		<h2>Usuarios Cadastrados</h2>
 
-		<c:forEach items="${usuarios}" var="usuario">
-			<tr>
-				<td style="width:100px"><c:out value="${usuario.id }"></c:out></td>
-				<td style="width:100px"><c:out value="${usuario.login }"></c:out></td>
-				<td> <c:out value="${usuario.senha }"></c:out></td>
-				<td><a
-					href="CadastrarUsuario?acao=editar&login=${usuario.login}">Editar</a></td>
-				<td><a
-					href="CadastrarUsuario?acao=delete&login=${usuario.login}">Excluir</a></td>
-			</tr>
-		</c:forEach>
-	</table>
+		<div class="main">
+			<table class="tabela">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Login</th>
+						<th>Senha</th>
+						<th></th>
+
+					</tr>
+				</thead>
+				<tfoot>
+				<tfoot>
+				<tbody>
+					<c:forEach items="${usuarios}" var="usuario">
+						<tr>
+							<td data-title="Id"><c:out value="${usuario.id }"></c:out></td>
+							<td data-title="Login"><c:out value="${usuario.login }"></c:out></td>
+							<td data-title="senha"><c:out value="${usuario.senha }"></c:out></td>
+							<td class="select" ><a class="button-editar"
+								href="CadastrarUsuario?acao=editar&login=${usuario.login}">Editar</a></td>
+							<td class="select" ><a class="button-excluir"
+								href="CadastrarUsuario?acao=delete&login=${usuario.login}">Excluir</a></td>
+						</tr>
+
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+	</div>
 </body>
 </html>

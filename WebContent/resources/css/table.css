@@ -1,0 +1,72 @@
+.div-tabela{
+	margin-bottom: 50px;
+	
+}
+.tabela {
+  text-align: center;
+  margin: auto;
+ 
+}
+
+h2 {
+  text-align: center;
+  font-weight: max;
+  color: #008080;
+  text-shadow: 1px 1px #00ff00;
+}
+
+
+
+tr {
+  padding-bottom: 10px;
+}
+td {
+  padding: 10px 50px 0;
+  text-align: center;
+  
+}
+
+
+th {
+  text-align: left;
+  font-weight: 700;
+}
+
+
+tfoot {
+  th {
+    display: block;
+    padding: 10px;
+    text-align: center;
+    color: lighten($rain,55%);
+  }
+}
+
+.button-excluir {
+  line-height: 1;
+  display: inline-block;
+  font-size: 1.2rem;
+  text-decoration: none;
+  border-radius: 5px;
+  color: #fff;
+  padding: 8px;
+  background-color: red;
+}
+
+.button-editar {
+  line-height: 1;
+  display: inline-block;
+  font-size: 1.2rem;
+  text-decoration: none;
+  border-radius: 5px;
+  color: #fff;
+  padding: 8px;
+  background-color: blue;
+}
+.select {
+ 
+  padding-bottom: 20px;
+  
+}
+tr:nth-child(even) {background: #c0c0c0}
+tr:nth-child(odd) {background: #808080}
