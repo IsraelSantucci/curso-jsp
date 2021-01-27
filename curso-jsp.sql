@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 16-Jan-2021 às 22:17
+-- Tempo de geração: 28-Jan-2021 às 00:47
 -- Versão do servidor: 10.4.17-MariaDB
 -- versão do PHP: 8.0.0
 
@@ -28,18 +28,39 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `usuario` (
-  `login` varchar(30) NOT NULL,
-  `senha` varchar(30) NOT NULL
+  `id` bigint(20) NOT NULL,
+  `login` varchar(50) NOT NULL,
+  `senha` varchar(30) NOT NULL,
+  `nome` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `usuario`
 --
 
-INSERT INTO `usuario` (`login`, `senha`) VALUES
-('admin', 'admin'),
-('teste', 'teste'),
-('joao', '123456');
+INSERT INTO `usuario` (`id`, `login`, `senha`, `nome`) VALUES
+(48, 'admin', 'admin', 'nome de teste'),
+(49, 'teste', 'teste', 'teste nome');
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices para tabela `usuario`
+--
+ALTER TABLE `usuario`
+  ADD UNIQUE KEY `id` (`id`);
+
+--
+-- AUTO_INCREMENT de tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

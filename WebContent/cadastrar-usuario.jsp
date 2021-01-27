@@ -18,8 +18,8 @@
 			<label for="id">Id: </label> <input type="text" name="id"
 				readonly="readonly" value="${usuario.id }" /> <label for="login">Login:</label>
 			<input type="text" name="login" value="${usuario.login }" />
-
-			<labelfor="senha"> Senha:</label> <input type="password"
+			<label for="nome">Nome:</label> <input type="text" name="nome" value="${usuario.nome }">
+			<label for="senha"> Senha:</label> <input type="password"
 				name="senha" value="${usuario.senha }" /> <input type="submit"
 				value="Cadastrar">
 		</form>
@@ -37,7 +37,8 @@
 					<tr>
 						<th>Id</th>
 						<th>Login</th>
-						<th>Senha</th>
+						<th>Nome</th>
+						<th></th>
 						<th></th>
 
 					</tr>
@@ -49,7 +50,7 @@
 						<tr>
 							<td data-title="Id"><c:out value="${usuario.id }"></c:out></td>
 							<td data-title="Login"><c:out value="${usuario.login }"></c:out></td>
-							<td data-title="senha"><c:out value="${usuario.senha }"></c:out></td>
+							<td data-title="Nome"><c:out value="${usuario.nome }"></c:out></td>
 							<td class="select" ><a class="button-editar"
 								href="CadastrarUsuario?acao=editar&login=${usuario.login}">Editar</a></td>
 							<td class="select" ><a class="button-excluir"

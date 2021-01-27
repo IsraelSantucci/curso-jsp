@@ -60,11 +60,13 @@ public class CadastrarUsuario extends HttpServlet {
 		
 		String id = request.getParameter("id");
 		String login = request.getParameter("login");
+		String nome = request.getParameter("nome");
 		String senha = request.getParameter("senha");
 		
 		Usuario usuario = new Usuario();
 		usuario.setId(!id.isEmpty()? Long.parseLong(id) : 0);
 		usuario.setLogin(login);
+		usuario.setNome(nome);
 		usuario.setSenha(senha);
 		
 		if(id == null || id.isEmpty()) {
