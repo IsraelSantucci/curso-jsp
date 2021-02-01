@@ -40,10 +40,7 @@ public class Filter implements javax.servlet.Filter{
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
-		}
-		
-		
-		
+		}		
 	}
 
 	@Override

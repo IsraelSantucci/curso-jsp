@@ -8,6 +8,6 @@
 </head>
 <body>
 	<h1>Sisteminha de Teste</h1>
-	<a href="cadastrar-usuario.jsp"> Cadastrar usuario</a>
+	<a href="CadastrarUsuario?acao=listartodos"> Cadastrar usuario</a>
 </body>
 </html>

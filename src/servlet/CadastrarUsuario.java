@@ -51,6 +51,15 @@ public class CadastrarUsuario extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(acao.equals("listartodos")){
+			try {
+				List<Usuario> usuarios = dao.listar();
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/cadastrar-usuario.jsp");
+				request.setAttribute("usuarios", usuarios);
+				dispatcher.forward(request, response);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 	}
