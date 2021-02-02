@@ -24,6 +24,7 @@
 			
 			<label for="senha"> Senha:</label> 
 			<input id="senha" type="password" name="senha" value="${usuario.senha }"  /> 
+			<input type="checkbox" onclick="exibirSenha()">
 			<input type="submit" value="Cadastrar">
 		</form>
 	</div>
@@ -66,5 +67,16 @@
 		</div>
 	</div>
 	
+	<script>
+		function exibirSenha(){
+			var senha = document.getElementById("senha");
+			
+			if(senha.type === "password"){
+				senha.type = "text";
+			}else{
+				senha.type = "password"
+			}
+		}
+	</script>
 </body>
 </html>
