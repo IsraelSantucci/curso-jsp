@@ -14,14 +14,17 @@
 
 	<div class="form-style-6">
 		<h1>Cadastrar Usuarios</h1>
-		<form action="CadastrarUsuario" method="post">
-			<label for="id">Id: </label> <input type="text" name="id"
-				readonly="readonly" value="${usuario.id }" /> <label for="login">Login:</label>
+		<form action="CadastrarUsuario" method="post" autocomplete="off">
+			<label for="id">Id: </label> 
+			<input type="text" name="id" readonly="readonly" value="${usuario.id }" /> <label for="login">Login:</label>
+				
 			<input type="text" name="login" value="${usuario.login }" />
-			<label for="nome">Nome:</label> <input type="text" name="nome" value="${usuario.nome }">
-			<label for="senha"> Senha:</label> <input type="password"
-				name="senha" value="${usuario.senha }" /> <input type="submit"
-				value="Cadastrar">
+			<label for="nome">Nome:</label> 
+			<input type="text" name="nome" value="${usuario.nome }">
+			
+			<label for="senha"> Senha:</label> 
+			<input id="senha" type="password" name="senha" value="${usuario.senha }"  /> 
+			<input type="submit" value="Cadastrar">
 		</form>
 	</div>
 	<br>
@@ -52,9 +55,9 @@
 							<td data-title="Login"><c:out value="${usuario.login }"></c:out></td>
 							<td data-title="Nome"><c:out value="${usuario.nome }"></c:out></td>
 							<td class="select" ><a class="button-editar"
-								href="CadastrarUsuario?acao=editar&login=${usuario.login}">Editar</a></td>
+								href="CadastrarUsuario?acao=editar&id=${usuario.id}">Editar</a></td>
 							<td class="select" ><a class="button-excluir"
-								href="CadastrarUsuario?acao=delete&login=${usuario.login}">Excluir</a></td>
+								href="CadastrarUsuario?acao=delete&id=${usuario.id}">Excluir</a></td>
 						</tr>
 
 					</c:forEach>
@@ -62,5 +65,6 @@
 			</table>
 		</div>
 	</div>
+	
 </body>
 </html>

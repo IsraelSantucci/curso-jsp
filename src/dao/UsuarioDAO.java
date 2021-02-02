@@ -60,8 +60,8 @@ public class UsuarioDAO {
 		return usuarios;
 	}
 	
-	public void deletar(String login) {
-		String sql = "delete from usuario where login = '"+login+"'";
+	public void deletar(Long id) {
+		String sql = "delete from usuario where id = '"+id+"'";
 		try {
 			PreparedStatement delete = connection.prepareStatement(sql);
 			delete.execute();
@@ -78,17 +78,17 @@ public class UsuarioDAO {
 		
 	}
 	
-	public Usuario consultar(String login) throws Exception{
+	public Usuario consultar(Long id) throws Exception{
 		
-		String sql = "select * from usuario where login= '"+login+"'";
+		String sql = "select * from usuario where id= '"+id+"'";
 		PreparedStatement consultar = connection.prepareStatement(sql);
 		ResultSet set = consultar.executeQuery();
-		while(set.next()) {
+		if(set.next()) {
 			Usuario usuario = new Usuario();
 			usuario.setId(set.getLong("id"));
 			usuario.setLogin(set.getString("login"));
 			usuario.setNome(set.getString("nome"));
-			usuario.setSenha("senha");
+			usuario.setSenha(set.getString("senha"));
 			return usuario;
 		}
 		
