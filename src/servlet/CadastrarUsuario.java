@@ -17,33 +17,33 @@ import dao.UsuarioDAO;
 @WebServlet("/CadastrarUsuario")
 public class CadastrarUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private UsuarioDAO dao;
-  
-    public CadastrarUsuario() {
-    	super();
-    	dao = new UsuarioDAO();
-        
-        
-    }
+	private UsuarioDAO dao;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+	public CadastrarUsuario() {
+		super();
+		dao = new UsuarioDAO();
+
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		String acao = request.getParameter("acao");
 		String parametroId = request.getParameter("id");
-		Long id = !parametroId.isEmpty()?Long.parseLong(parametroId) : 0;
-		
-		if(acao.equals("delete")) {
+		Long id = !parametroId.isEmpty() ? Long.parseLong(parametroId) : 0;
+
+		if (acao.equals("delete")) {
 			dao.deletar(id);
-			
+
 			try {
 				List<Usuario> usuarios = dao.listar();
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/cadastrar-usuario.jsp");
 				request.setAttribute("usuarios", usuarios);
 				dispatcher.forward(request, response);
-			}catch(Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(acao.equals("editar")) {
+		} else if (acao.equals("editar")) {
 			try {
 				Usuario usuario = dao.consultar(id);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/cadastrar-usuario.jsp");
@@ -52,53 +52,62 @@ public class CadastrarUsuario extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(acao.equals("listartodos")){
+		} else if (acao.equals("listartodos")) {
 			try {
 				List<Usuario> usuarios = dao.listar();
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/cadastrar-usuario.jsp");
 				request.setAttribute("usuarios", usuarios);
 				dispatcher.forward(request, response);
-			}catch(Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		
+
 	}
 
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String id = request.getParameter("id");
-		String login = request.getParameter("login");
-		String nome = request.getParameter("nome");
-		String senha = request.getParameter("senha");
-		
-		Usuario usuario = new Usuario();
-		usuario.setId(!id.isEmpty()? Long.parseLong(id) : 0);
-		usuario.setLogin(login);
-		usuario.setNome(nome);
-		usuario.setSenha(senha);
-		
-		if(id == null || id.isEmpty()) {
-			dao.salvar(usuario);
-		}else {
-			dao.atualizar(usuario);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String acao = request.getParameter("acao");
+
+		if (acao != null && acao.equalsIgnoreCase("reset") ) {
+			try {
+				List<Usuario> usuarios = dao.listar();
+				request.setAttribute("usuarios", usuarios);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/cadastrar-usuario.jsp");
+				dispatcher.forward(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else {
+			String id = request.getParameter("id");
+			String login = request.getParameter("login");
+			String nome = request.getParameter("nome");
+			String senha = request.getParameter("senha");
+
+			Usuario usuario = new Usuario();
+			usuario.setId(!id.isEmpty() ? Long.parseLong(id) : 0);
+			usuario.setLogin(login);
+			usuario.setNome(nome);
+			usuario.setSenha(senha);
+
+			if (id == null || id.isEmpty()) {
+				dao.salvar(usuario);
+			} else {
+				dao.atualizar(usuario);
+			}
+
+			try {
+				List<Usuario> usuarios = dao.listar();
+				request.setAttribute("usuarios", usuarios);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/cadastrar-usuario.jsp");
+				dispatcher.forward(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
 		}
-		
-		
-		
-		try {
-			List<Usuario> usuarios =  dao.listar();
-			request.setAttribute("usuarios", usuarios);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/cadastrar-usuario.jsp");
-			dispatcher.forward(request, response);
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-		
-		
-		
+
 	}
 
 }

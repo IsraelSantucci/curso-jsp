@@ -14,7 +14,7 @@
 
 	<div class="form-style-6">
 		<h1>Cadastrar Usuarios</h1>
-		<form action="CadastrarUsuario" method="post" autocomplete="off">
+		<form id="formCadastro" action="CadastrarUsuario" method="post" autocomplete="off">
 			<label for="id">Id: </label> 
 			<input type="text" name="id" readonly="readonly" value="${usuario.id }" /> <label for="login">Login:</label>
 				
@@ -25,7 +25,7 @@
 			<label for="senha"> Senha:</label> 
 			<input id="senha" type="password" name="senha" value="${usuario.senha }"  /> 
 			<input type="checkbox" onclick="exibirSenha()">
-			<input type="submit" value="Cadastrar">
+			<input type="submit" value="Cadastrar"> <input type="submit" value="Cancelar" onclick="document.getElementById('formCadastro').action='CadastrarUsuario?acao=reset'">
 		</form>
 	</div>
 	<br>
