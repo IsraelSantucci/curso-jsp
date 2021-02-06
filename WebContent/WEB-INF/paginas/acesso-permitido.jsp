@@ -7,7 +7,7 @@
 <title>Sisteminha de Teste</title>
 </head>
 <body>
-	<h1>Sisteminha de Teste</h1>
-	<a href="CadastrarUsuario?acao=listartodos&id="> Cadastrar usuario</a>
+	<h1>Sisteminha de Teste</h1>								
+	<a href="CadastrarUsuario?acao=listartodos&id="><img title="Cadastro de usuario"  alt="Cadastrar usuario" src="resources/img/usuario.png" width="80px" height="80px" /></a>
 </body>
 </html>

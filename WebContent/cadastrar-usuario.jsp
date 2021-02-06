@@ -18,12 +18,18 @@
 		<h3 id="msg-login-repetido">${msg}</h3>
 		
 		<form id="formCadastro" action="CadastrarUsuario" method="post" autocomplete="off">
+		
 			<label for="id">Id: </label> 
-			<input type="text" name="id" readonly="readonly" value="${usuario.id }" /> <label for="login">Login:</label>
-				
+			<input type="text" name="id" readonly="readonly" value="${usuario.id }" /> 
+			
+			<label for="login">Login:</label>	
 			<input type="text" name="login" value="${usuario.login }" />
+			
 			<label for="nome">Nome:</label> 
 			<input type="text" name="nome" value="${usuario.nome }">
+			
+			<label for="telefone">Telefone:</label>
+			<input type="text" name="telefone">
 			
 			<label for="senha"> Senha:</label> 
 			<input id="senha" type="password" name="senha" value="${usuario.senha }"  /> 
@@ -45,6 +51,7 @@
 						<th>Id</th>
 						<th>Login</th>
 						<th>Nome</th>
+						<th>Telefone</th>
 						<th></th>
 						<th></th>
 
@@ -58,6 +65,7 @@
 							<td data-title="Id"><c:out value="${usuario.id }"></c:out></td>
 							<td data-title="Login"><c:out value="${usuario.login }"></c:out></td>
 							<td data-title="Nome"><c:out value="${usuario.nome }"></c:out></td>
+							<td data-title="Telefone"><c:out value="${usuario.telefone }"></c:out></td>
 							<td class="select" ><a class="button-editar"
 								href="CadastrarUsuario?acao=editar&id=${usuario.id}">Editar</a></td>
 							<td class="select" ><a class="button-excluir"
