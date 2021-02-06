@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 28-Jan-2021 às 00:47
+-- Tempo de geração: 06-Fev-2021 às 22:00
 -- Versão do servidor: 10.4.17-MariaDB
 -- versão do PHP: 8.0.0
 
@@ -31,16 +31,17 @@ CREATE TABLE `usuario` (
   `id` bigint(20) NOT NULL,
   `login` varchar(50) NOT NULL,
   `senha` varchar(30) NOT NULL,
-  `nome` varchar(30) NOT NULL
+  `nome` varchar(30) NOT NULL,
+  `telefone` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `login`, `senha`, `nome`) VALUES
-(48, 'admin', 'admin', 'nome de teste'),
-(49, 'teste', 'teste', 'teste nome');
+INSERT INTO `usuario` (`id`, `login`, `senha`, `nome`, `telefone`) VALUES
+(61, 'admin', '123', 'admin nome', '35 84553688'),
+(75, 'teste', '123', 'nome teste', '99 9999-9999');
 
 --
 -- Índices para tabelas despejadas
@@ -60,7 +61,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
