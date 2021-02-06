@@ -67,9 +67,9 @@
 							<td data-title="Nome"><c:out value="${usuario.nome }"></c:out></td>
 							<td data-title="Telefone"><c:out value="${usuario.telefone }"></c:out></td>
 							<td class="select" ><a class="button-editar"
-								href="CadastrarUsuario?acao=editar&id=${usuario.id}">Editar</a></td>
+								href="CadastrarUsuario?acao=editar&id=${usuario.id}"><img src="resources/img/editar.png" width="30px" height="30px" alt="Editar" title="Editar"></a></td>
 							<td class="select" ><a class="button-excluir"
-								href="CadastrarUsuario?acao=delete&id=${usuario.id}">Excluir</a></td>
+								href="CadastrarUsuario?acao=delete&id=${usuario.id}"><img src="resources/img/excluir.png" width="30px" height="30px" alt="Excluir" title="Excluir"></a></td>
 						</tr>
 
 					</c:forEach>
