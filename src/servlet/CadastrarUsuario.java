@@ -33,9 +33,11 @@ public class CadastrarUsuario extends HttpServlet {
 		Long id = !parametroId.isEmpty() ? Long.parseLong(parametroId) : 0;
 
 		if (acao.equals("delete")) {
-			dao.deletar(id);
-
+			
 			try {
+				dao.deletar(id);
+				request.setAttribute("msg", "Usuario deletado com sussesso");
+				
 				List<Usuario> usuarios = dao.listar();
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/cadastrar-usuario.jsp");
 				request.setAttribute("usuarios", usuarios);
@@ -96,12 +98,18 @@ public class CadastrarUsuario extends HttpServlet {
 			try {
 				if (id == null || id.isEmpty() && dao.validarLogin(login)) {
 					dao.salvar(usuario);
-					System.out.println("cadastrado com susseso:");
+					request.setAttribute("msg", "Usuário Cadastrado com sussesso");
 				} else if(!(id == null) && !id.isEmpty()){
-					dao.atualizar(usuario);
-					System.out.println("cadastro atualizado");
+					if(!dao.validarLoginUpdate(usuario.getLogin(), usuario.getId())){
+						request.setAttribute("msg", "Já existe outro usuario com esse Login");
+					}else {
+						dao.atualizar(usuario);
+						request.setAttribute("msg", "Usuário atualizado com sussesso");
+					}
+					
+					
 				}else {
-					request.setAttribute("msg", "Usuario ja existe com o mesmo login!");
+					request.setAttribute("msg", "Ja existe outro usuario com esse login!");
 				}
 
 				List<Usuario> usuarios = dao.listar();

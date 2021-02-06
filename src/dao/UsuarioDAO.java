@@ -132,4 +132,19 @@ public class UsuarioDAO {
 		
 		return false;
 	}
+	
+	public boolean validarLoginUpdate(String login, Long id) throws Exception {
+	
+		String sql = "SELECT COUNT(1) AS qtd FROM usuario WHERE login=? AND id <> ?";
+		PreparedStatement statement = connection.prepareStatement(sql);
+		statement.setString(1, login);
+		statement.setLong(2, id);
+		
+		ResultSet result = statement.executeQuery();
+		if(result.next()) {
+			return result.getInt("qtd") >= 0;
+		}
+		
+		return false;
+	}
 }

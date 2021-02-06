@@ -29,7 +29,7 @@
 			<input type="text" name="nome" value="${usuario.nome }">
 			
 			<label for="telefone">Telefone:</label>
-			<input type="text" name="telefone">
+			<input type="text" name="telefone" value="${usuario.telefone }">
 			
 			<label for="senha"> Senha:</label> 
 			<input id="senha" type="password" name="senha" value="${usuario.senha }"  /> 
