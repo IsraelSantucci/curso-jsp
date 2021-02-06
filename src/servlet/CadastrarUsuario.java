@@ -70,7 +70,7 @@ public class CadastrarUsuario extends HttpServlet {
 
 		String acao = request.getParameter("acao");
 
-		if (acao != null && acao.equalsIgnoreCase("reset") ) {
+		if (acao != null && acao.equalsIgnoreCase("reset")) {
 			try {
 				List<Usuario> usuarios = dao.listar();
 				request.setAttribute("usuarios", usuarios);
@@ -91,13 +91,17 @@ public class CadastrarUsuario extends HttpServlet {
 			usuario.setNome(nome);
 			usuario.setSenha(senha);
 
-			if (id == null || id.isEmpty()) {
-				dao.salvar(usuario);
-			} else {
-				dao.atualizar(usuario);
-			}
-
 			try {
+				if (id == null || id.isEmpty() && dao.validarLogin(login)) {
+					dao.salvar(usuario);
+					System.out.println("cadastrado com susseso:");
+				} else if(!(id == null) && !id.isEmpty()){
+					dao.atualizar(usuario);
+					System.out.println("cadastro atualizado");
+				}else {
+					System.out.println("login repetido");
+				}
+
 				List<Usuario> usuarios = dao.listar();
 				request.setAttribute("usuarios", usuarios);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/cadastrar-usuario.jsp");
