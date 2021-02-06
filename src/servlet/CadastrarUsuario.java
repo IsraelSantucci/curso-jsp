@@ -99,7 +99,7 @@ public class CadastrarUsuario extends HttpServlet {
 					dao.atualizar(usuario);
 					System.out.println("cadastro atualizado");
 				}else {
-					System.out.println("login repetido");
+					request.setAttribute("msg", "Usuario ja existe com o mesmo login!");
 				}
 
 				List<Usuario> usuarios = dao.listar();

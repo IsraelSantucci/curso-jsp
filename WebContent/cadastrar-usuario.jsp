@@ -14,6 +14,9 @@
 
 	<div class="form-style-6">
 		<h1>Cadastrar Usuarios</h1>
+		
+		<h3 id="msg-login-repetido">${msg}</h3>
+		
 		<form id="formCadastro" action="CadastrarUsuario" method="post" autocomplete="off">
 			<label for="id">Id: </label> 
 			<input type="text" name="id" readonly="readonly" value="${usuario.id }" /> <label for="login">Login:</label>
