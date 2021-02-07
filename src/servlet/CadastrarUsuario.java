@@ -33,11 +33,11 @@ public class CadastrarUsuario extends HttpServlet {
 		Long id = !parametroId.isEmpty() ? Long.parseLong(parametroId) : 0;
 
 		if (acao.equals("delete")) {
-			
+
 			try {
 				dao.deletar(id);
 				request.setAttribute("msg", "Usuario deletado com sussesso");
-				
+
 				List<Usuario> usuarios = dao.listar();
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/cadastrar-usuario.jsp");
 				request.setAttribute("usuarios", usuarios);
@@ -96,19 +96,26 @@ public class CadastrarUsuario extends HttpServlet {
 			usuario.setTelefone(telefone);
 
 			try {
-				if (id == null || id.isEmpty() && dao.validarLogin(login)) {
-					dao.salvar(usuario);
-					request.setAttribute("msg", "Usuário Cadastrado com sussesso");
-				} else if(!(id == null) && !id.isEmpty()){
-					if(!dao.validarLoginUpdate(usuario.getLogin(), usuario.getId())){
-						request.setAttribute("msg", "Já existe outro usuario com esse Login");
-					}else {
-						dao.atualizar(usuario);
-						request.setAttribute("msg", "Usuário atualizado com sussesso");
+				if (id == null || id.isEmpty() && dao.validarLogin(usuario.getLogin())) {
+					if (dao.validarSenhaRepetida(usuario.getSenha())) {
+						request.setAttribute("msg", "Ja existe outro usuário com essa senha");
+					} else {
+						dao.salvar(usuario);
+						request.setAttribute("msg", "Usuário Cadastrado com sussesso");
 					}
-					
-					
-				}else {
+
+				} else if (!(id == null) && !id.isEmpty()) {
+					if (dao.validarLoginUpdate(usuario.getLogin(), usuario.getId())) {
+						request.setAttribute("msg", "Já existe outro usuario com esse Login");
+					} else {
+						if (dao.validarSenhaRepetidaUpdate(usuario.getSenha(), usuario.getId())) {
+							request.setAttribute("msg", "Ja existe outro usuário com essa senha");
+						} else {
+							dao.atualizar(usuario);
+							request.setAttribute("msg", "Usuário atualizado com sussesso");
+						}
+					}
+				} else {
 					request.setAttribute("msg", "Ja existe outro usuario com esse login!");
 				}
 

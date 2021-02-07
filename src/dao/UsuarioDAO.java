@@ -101,7 +101,8 @@ public class UsuarioDAO {
 	public void atualizar(Usuario usuario) {
 
 		try {
-			String sql = "UPDATE usuario SET login= ?, nome= ?, senha= ?, telefone= ? where id= '" + usuario.getId() + "'";
+			String sql = "UPDATE usuario SET login= ?, nome= ?, senha= ?, telefone= ? where id= '" + usuario.getId()
+					+ "'";
 			PreparedStatement atualizar = connection.prepareStatement(sql);
 			atualizar.setString(1, usuario.getLogin());
 			atualizar.setString(2, usuario.getNome());
@@ -126,25 +127,52 @@ public class UsuarioDAO {
 		PreparedStatement statement = connection.prepareStatement(sql);
 		statement.setString(1, login);
 		ResultSet result = statement.executeQuery();
-		if(result.next()) {
-			return result.getInt("qtd") <= 0; // retorna true se tiver uma ocorrencia do login buscada
+		if (result.next()) {
+			return result.getInt("qtd") <= 0; // retorna true se nao tiver uma ocorrencia do login buscada
 		}
-		
+
 		return false;
 	}
-	
+
+	public boolean validarSenhaRepetida(String senha) throws SQLException {
+
+		String sql = "SELECT count(1) as qtd  fROM usuario where senha = ?";
+		PreparedStatement statement = connection.prepareStatement(sql);
+		statement.setString(1, senha);
+		ResultSet result = statement.executeQuery();
+		if (result.next()) {
+			return result.getInt("qtd") > 0; // retorna true se  tem senha repetida
+		}
+
+		return false;
+	}
+
 	public boolean validarLoginUpdate(String login, Long id) throws Exception {
-	
+
 		String sql = "SELECT COUNT(1) AS qtd FROM usuario WHERE login=? AND id <> ?";
 		PreparedStatement statement = connection.prepareStatement(sql);
 		statement.setString(1, login);
 		statement.setLong(2, id);
-		
+
 		ResultSet result = statement.executeQuery();
-		if(result.next()) {
-			return result.getInt("qtd") >= 0;
+		if (result.next()) {
+			return result.getInt("qtd") > 0; // returna true se ja existir o login
 		}
-		
+
+		return false;
+	}
+
+	public boolean validarSenhaRepetidaUpdate(String senha, Long id) throws SQLException {
+
+		String sql = "SELECT count(1) as qtd  fROM usuario where id <> ? and senha = ?";
+		PreparedStatement statement = connection.prepareStatement(sql);
+		statement.setLong(1, id);
+		statement.setString(2, senha);
+		ResultSet result = statement.executeQuery();
+		if (result.next()) {
+			return result.getInt("qtd") > 0; // retorna true se tem senha repetida
+		}
+
 		return false;
 	}
 }
