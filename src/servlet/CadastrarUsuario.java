@@ -96,9 +96,11 @@ public class CadastrarUsuario extends HttpServlet {
 			usuario.setTelefone(telefone);
 
 			try {
+				boolean manterDados = false;
 				if (id == null || id.isEmpty() && dao.validarLogin(usuario.getLogin())) {
 					if (dao.validarSenhaRepetida(usuario.getSenha())) {
 						request.setAttribute("msg", "Ja existe outro usuário com essa senha");
+						manterDados = true;
 					} else {
 						dao.salvar(usuario);
 						request.setAttribute("msg", "Usuário Cadastrado com sussesso");
@@ -107,9 +109,11 @@ public class CadastrarUsuario extends HttpServlet {
 				} else if (!(id == null) && !id.isEmpty()) {
 					if (dao.validarLoginUpdate(usuario.getLogin(), usuario.getId())) {
 						request.setAttribute("msg", "Já existe outro usuario com esse Login");
+						manterDados = true;
 					} else {
 						if (dao.validarSenhaRepetidaUpdate(usuario.getSenha(), usuario.getId())) {
 							request.setAttribute("msg", "Ja existe outro usuário com essa senha");
+							manterDados = true;
 						} else {
 							dao.atualizar(usuario);
 							request.setAttribute("msg", "Usuário atualizado com sussesso");
@@ -117,8 +121,13 @@ public class CadastrarUsuario extends HttpServlet {
 					}
 				} else {
 					request.setAttribute("msg", "Ja existe outro usuario com esse login!");
+					manterDados = true;
 				}
 
+				if(manterDados) {
+					usuario.setId(null);
+					request.setAttribute("usuario", usuario);
+				}
 				List<Usuario> usuarios = dao.listar();
 				request.setAttribute("usuarios", usuarios);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/cadastrar-usuario.jsp");
