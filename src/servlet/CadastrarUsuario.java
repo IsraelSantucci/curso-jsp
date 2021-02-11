@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import beans.Usuario;
 import dao.UsuarioDAO;
 
-@WebServlet("/CadastrarUsuario")
+@WebServlet(urlPatterns= "/CadastrarUsuario")
 public class CadastrarUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UsuarioDAO dao;
