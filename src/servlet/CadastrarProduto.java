@@ -33,7 +33,12 @@ public class CadastrarProduto extends HttpServlet {
 			dao.excluirProduto(codigo);
 			
 		}
-		
+		if(acao.equalsIgnoreCase("editar")) {
+			
+			Produto produto = dao.buscarProduto(codigo);
+			request.setAttribute("produto", produto);
+			
+		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher("cadastrar-produtos.jsp");
 		List<Produto> produtos = dao.listar();
 		request.setAttribute("produtos", produtos);
@@ -44,17 +49,26 @@ public class CadastrarProduto extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String codigo = request.getParameter("codigo");
 		String nome = request.getParameter("nome");
 		String quantidade = request.getParameter("quantidade");
 		String valor = request.getParameter("valor");
 		
 		Produto produto = new Produto();
+		produto.setCodigo(codigo.isEmpty() ? null : Long.valueOf(codigo));
 		produto.setNome(nome);
 		produto.setQuantidade(quantidade.isEmpty() ? 0 : Integer.valueOf(quantidade));
 		produto.setValor(valor.isEmpty() ? 0 : Double.valueOf(valor));
 		
 		ProdutoDAO dao = new ProdutoDAO();
-		dao.cadastraProduto(produto);
+		
+		if(produto.getCodigo() != null ) {
+			dao.editarProduto(produto);
+		}else {
+			dao.cadastraProduto(produto);
+		}
+		
+		
 		List<Produto> produtos = dao.listar();
 		request.setAttribute("produtos", produtos);
 		

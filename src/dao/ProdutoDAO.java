@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import beans.Produto;
+import beans.Usuario;
 import connection.SingleConnection;
 
 public class ProdutoDAO {
@@ -78,5 +79,46 @@ public class ProdutoDAO {
 			}
 			e.printStackTrace();
 		}
+	}
+	
+	public void editarProduto(Produto produto) {
+		try {
+			String sql = "UPDATE produto SET nome = ?, quantidade = ?, valor = ? WHERE codigo = ?";
+			PreparedStatement statement  = connection.prepareStatement(sql);
+			statement.setString(1, produto.getNome());
+			statement.setInt(2, produto.getQuantidade());
+			statement.setDouble(3, produto.getValor());
+			statement.setLong(4, produto.getCodigo());
+			statement.executeUpdate();
+		}catch(SQLException e){
+			try {
+				connection.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		}
+	}
+	
+	public Produto buscarProduto(Long codigo) {
+		
+		try {
+			String sql = "SELECT * FROM produto WHERE codigo = ?";
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setLong(1, codigo);
+			ResultSet result = statement.executeQuery();
+			if(result.next()) {
+				Produto produto = new Produto();
+				produto.setCodigo(result.getLong("codigo"));
+				produto.setNome(result.getString("nome"));
+				produto.setQuantidade(result.getInt("quantidade"));
+				produto.setValor(result.getDouble("valor"));
+				
+				return produto;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
