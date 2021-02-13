@@ -84,14 +84,14 @@ public class UsuarioDAO {
 
 		String sql = "select * from usuario where id= '" + id + "'";
 		PreparedStatement consultar = connection.prepareStatement(sql);
-		ResultSet set = consultar.executeQuery();
-		if (set.next()) {
+		ResultSet result = consultar.executeQuery();
+		if (result.next()) {
 			Usuario usuario = new Usuario();
-			usuario.setId(set.getLong("id"));
-			usuario.setLogin(set.getString("login"));
-			usuario.setNome(set.getString("nome"));
-			usuario.setSenha(set.getString("senha"));
-			usuario.setTelefone(set.getString("telefone"));
+			usuario.setId(result.getLong("id"));
+			usuario.setLogin(result.getString("login"));
+			usuario.setNome(result.getString("nome"));
+			usuario.setSenha(result.getString("senha"));
+			usuario.setTelefone(result.getString("telefone"));
 			return usuario;
 		}
 

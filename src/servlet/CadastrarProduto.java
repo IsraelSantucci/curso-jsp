@@ -29,8 +29,10 @@ public class CadastrarProduto extends HttpServlet {
 		Long codigo = parametroCodigo.isEmpty() ? null : Long.valueOf(parametroCodigo);
 		
 		ProdutoDAO dao = new ProdutoDAO();
+		
 		if(acao.equalsIgnoreCase("excluir")){
 			dao.excluirProduto(codigo);
+			request.setAttribute("msg", "Produto excluido com sussesso");
 			
 		}
 		if(acao.equalsIgnoreCase("editar")) {
@@ -64,8 +66,15 @@ public class CadastrarProduto extends HttpServlet {
 		
 		if(produto.getCodigo() != null ) {
 			dao.editarProduto(produto);
+			request.setAttribute("msg", "Produto Editado com sussesso");
 		}else {
-			dao.cadastraProduto(produto);
+			if(!produto.getNome().isEmpty() && produto.getNome().trim() != "") {
+				dao.cadastraProduto(produto);
+				request.setAttribute("msg", "Produto cadastrado com sussesso");
+			}else {
+				request.setAttribute("ErroNomeProduto", "Preencher nome do produto ");
+			}
+			
 		}
 		
 		
