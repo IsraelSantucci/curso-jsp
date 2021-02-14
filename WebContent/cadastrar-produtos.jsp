@@ -13,7 +13,7 @@
 	<div class="form-style-6">
 		<h1>Cadastrar Produto</h1>
 		<h3 id="msg-login-repetido">${msg}</h3>
-		<form action="CadastrarProdutos" method="post" autocomplete="off">
+		<form action="CadastrarProdutos" method="post" autocomplete="off" class="formulario">
 			<label>Código</label>
 			<input type="text" name="codigo" readonly="true" value = "${produto.codigo}">
 		
@@ -28,6 +28,7 @@
 			<input type="text" name="valor" value="${produto.valor}">
 		
 			<input type="submit" value="Cadastrar">
+			<input type="submit" value="Cancelar" onclick="document.getElementById('formulario').action = 'CadastrarProdutos?acao=reset'">
 		</form>
 	</div>
 	<a href="LoginServlet"><img alt="voltar" src="resources/img/voltar.png" title="voltar" width="20px" height="20px">Voltar</a>
