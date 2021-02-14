@@ -11,7 +11,7 @@
 </head>
 <body>
 
-
+	<h3>usuario: ${sessionScope.usuarioLogado.nome}</h3>
 	<div class="form-style-6">
 		<h1>Cadastrar Usuarios</h1>
 		
@@ -38,7 +38,7 @@
 		</form>
 	</div>
 	<br>
-	<a href="index.jsp">voltar para inicio</a>
+	<a href="LoginServlet"><img alt="voltar" src="resources/img/voltar.png" title="voltar" width="20px" height="20px">Voltar</a>
 	<br>
 	<br>
 	<div class="div-tabela">

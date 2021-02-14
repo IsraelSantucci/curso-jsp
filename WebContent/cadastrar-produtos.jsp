@@ -30,6 +30,7 @@
 			<input type="submit" value="Cadastrar">
 		</form>
 	</div>
+	<a href="LoginServlet"><img alt="voltar" src="resources/img/voltar.png" title="voltar" width="20px" height="20px">Voltar</a>
 	<div class="div-tabela">
 		<h2>Produtos Cadastrados</h2>
 		<div class="main">

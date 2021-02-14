@@ -8,5 +8,7 @@
 </head>
 <body>
 	<h1>Acesso negado</h1>
+	
+	<a href="sisteminha.jsp">Voltar</a>
 </body>
 </html>

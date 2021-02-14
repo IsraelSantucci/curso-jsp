@@ -175,4 +175,23 @@ public class UsuarioDAO {
 
 		return false;
 	}
+	
+	public Usuario consultarUsuario(String login) throws Exception {
+
+		String sql = "select * from usuario where login= ? ";
+		PreparedStatement consultar = connection.prepareStatement(sql);
+		consultar.setString(1, login);
+		ResultSet result = consultar.executeQuery();
+		if (result.next()) {
+			Usuario usuario = new Usuario();
+			usuario.setId(result.getLong("id"));
+			usuario.setLogin(result.getString("login"));
+			usuario.setNome(result.getString("nome"));
+			usuario.setSenha(result.getString("senha"));
+			usuario.setTelefone(result.getString("telefone"));
+			return usuario;
+		}
+
+		return null;
+	}
 }
