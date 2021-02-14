@@ -49,8 +49,8 @@
 							<td>${produto.nome }</td>
 							<td>${produto.quantidade }</td>
 							<td>${produto.valor }</td>
-							<td><a href="CadastrarProdutos?acao=editar&codigo=${produto.codigo }">Editar</a></td>
-							<td><a href="CadastrarProdutos?acao=excluir&codigo=${produto.codigo }">Excluir</a></td>
+							<td><a href="CadastrarProdutos?acao=editar&codigo=${produto.codigo }"><img src="resources/img/editar.png" width="30px" height="30px" alt="Editar" title="Editar"></a></td>
+							<td><a href="CadastrarProdutos?acao=excluir&codigo=${produto.codigo }"><img src="resources/img/excluir.png" width="30px" height="30px" alt="Excluir" title="Excluir"></a></td>
 						</tr>
 					</c:forEach>
 			
