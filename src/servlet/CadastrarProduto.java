@@ -54,7 +54,7 @@ public class CadastrarProduto extends HttpServlet {
 		String acao = request.getParameter("acao");
 		ProdutoDAO dao = new ProdutoDAO();
 		
-		if (acao != null && !acao.equalsIgnoreCase("reset")) {
+		if (acao == null) {
 			String codigo = request.getParameter("codigo");
 			String nome = request.getParameter("nome");
 			String quantidade = request.getParameter("quantidade");
