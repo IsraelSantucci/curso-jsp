@@ -84,8 +84,14 @@ public class CadastrarProduto extends HttpServlet {
 				
 			} else {
 				if (!produto.getNome().isEmpty() && podeInserir && produto.getCodigo() == null) {
-					dao.cadastraProduto(produto);
-					request.setAttribute("msg", "Produto cadastrado com sussesso");
+					if(!dao.verificarProdutoRepetido(produto.getNome())) {
+						dao.cadastraProduto(produto);
+						request.setAttribute("msg", "Produto cadastrado com sussesso");
+					}else {
+						request.setAttribute("ErroNomeProduto", "Ja existe um produto cadastrado com esse nome ");
+						request.setAttribute("produto", produto);
+					}
+					
 				} else {
 					request.setAttribute("ErroNomeProduto", "Preencher nome do produto ");
 					request.setAttribute("produto", produto);
