@@ -121,4 +121,39 @@ public class ProdutoDAO {
 		}
 		return null;
 	}
+	
+	public boolean verificarProdutoRepetido(String nome) {
+		
+		try {
+			String sql = "SELECT COUNT(1) AS qtd FROM produto where nome = ?";
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setString(1, nome);
+			ResultSet result = statement.executeQuery();
+			if(result.next()) {
+				return result.getInt("qtd")>= 1;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
+	
+public boolean verificarProdutoRepetidoUpdate(String nome, Long codigo) {
+		
+		try {
+			String sql = "SELECT COUNT(1) AS qtd FROM produto where nome = ? && codigo <> ?";
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setString(1, nome);
+			statement.setLong(2, codigo);
+			ResultSet result = statement.executeQuery();
+			if(result.next()) {
+				return result.getInt("qtd")>= 1;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 }
