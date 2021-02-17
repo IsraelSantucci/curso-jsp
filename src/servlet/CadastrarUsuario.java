@@ -96,12 +96,21 @@ public class CadastrarUsuario extends HttpServlet {
 			usuario.setTelefone(telefone);
 
 			try {
-				boolean podeCadastrar = true;
 				boolean manterDados = false;
 
 				if (login == null || login.isEmpty()) {
-					request.setAttribute("msg", "O nome de usuario deve ser preenchido");
-				} else if (id == null || id.isEmpty() && dao.validarLogin(usuario.getLogin())) {
+					request.setAttribute("msg", "O Login de usuario deve ser preenchido");
+					manterDados = true;
+				}else if (nome == null || nome.isEmpty()) {
+					request.setAttribute("msg", "O Nome de usuario deve ser preenchida");
+					manterDados = true;
+				}else if (telefone == null || telefone.isEmpty()) {
+					request.setAttribute("msg", "O Telefone de usuario deve ser preenchido");
+					manterDados = true;
+				}else if (senha == null || senha.isEmpty()) {
+					request.setAttribute("msg", "O Senha de usuario deve ser preenchido");
+					manterDados = true;
+				}  else if (id == null || id.isEmpty() && dao.validarLogin(usuario.getLogin())) {
 					if (dao.validarSenhaRepetida(usuario.getSenha())) {
 						request.setAttribute("msg", "Ja existe outro usuário com essa senha");
 						manterDados = true;
