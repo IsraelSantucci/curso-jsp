@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import beans.Usuario;
 import dao.UsuarioDAO;
 
-@WebServlet(urlPatterns= "/CadastrarUsuario")
+@WebServlet(urlPatterns = "/CadastrarUsuario")
 public class CadastrarUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UsuarioDAO dao;
@@ -96,8 +96,12 @@ public class CadastrarUsuario extends HttpServlet {
 			usuario.setTelefone(telefone);
 
 			try {
+				boolean podeCadastrar = true;
 				boolean manterDados = false;
-				if (id == null || id.isEmpty() && dao.validarLogin(usuario.getLogin())) {
+
+				if (login == null || login.isEmpty()) {
+					request.setAttribute("msg", "O nome de usuario deve ser preenchido");
+				} else if (id == null || id.isEmpty() && dao.validarLogin(usuario.getLogin())) {
 					if (dao.validarSenhaRepetida(usuario.getSenha())) {
 						request.setAttribute("msg", "Ja existe outro usuário com essa senha");
 						manterDados = true;
@@ -124,7 +128,7 @@ public class CadastrarUsuario extends HttpServlet {
 					manterDados = true;
 				}
 
-				if(manterDados) {
+				if (manterDados) {
 					usuario.setId(null);
 					request.setAttribute("usuario", usuario);
 				}
