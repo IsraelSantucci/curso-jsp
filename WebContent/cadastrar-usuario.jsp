@@ -17,19 +17,19 @@
 		
 		<h3 id="msg-login-repetido">${msg}</h3>
 		
-		<form id="formCadastro" action="CadastrarUsuario" method="post" autocomplete="off">
+		<form id="formCadastro" action="CadastrarUsuario" method="post" autocomplete="off" onsubmit="return validarCampos() ? true : false">
 		
 			<label for="id">Id: </label> 
 			<input type="text" name="id" readonly="readonly" value="${usuario.id }" /> 
 			
 			<label for="login">Login:</label>	
-			<input type="text" name="login" value="${usuario.login }" />
+			<input type="text"  id="login" name="login" value="${usuario.login }" />
 			
 			<label for="nome">Nome:</label> 
-			<input type="text" name="nome" value="${usuario.nome }">
+			<input type="text" id="nome" name="nome" value="${usuario.nome }">
 			
 			<label for="telefone">Telefone:</label>
-			<input type="text" name="telefone" value="${usuario.telefone }">
+			<input type="text" id="telefone" name="telefone" value="${usuario.telefone }">
 			
 			<label for="senha"> Senha:</label> 
 			<input id="senha" type="password" name="senha" value="${usuario.senha }"  /> 
@@ -86,6 +86,25 @@
 				senha.type = "text";
 			}else{
 				senha.type = "password"
+			}
+			
+		}
+		
+		function  validarCampos(){
+			if(document.getElementById("login").value === ""){
+				alert("Login deve ser informado");
+				return false;
+			}else if(document.getElementById("nome").value === ""){
+				alert("O nome deve ser informado");
+				return false;
+			}else if(document.getElementById("telefone").value === ""){
+				alert("O telefone deve ser informado");
+				return false;
+			}else if(document.getElementById("senha").value === ""){
+				alert("A senha deve ser informada");
+				return false
+			}else{
+				return true;
 			}
 		}
 	</script>
