@@ -13,19 +13,19 @@
 	<div class="form-style-6">
 		<h1>Cadastrar Produto</h1>
 		<h3 id="msg-login-repetido">${msg}</h3>
-		<form action="CadastrarProdutos" method="post" autocomplete="off" id="formulario">
+		<form action="CadastrarProdutos" method="post" autocomplete="off" id="formulario" onsubmit="return validarCadastro()">
 			<label>Código</label>
 			<input type="text" name="codigo" readonly="true" value = "${produto.codigo}">
 		
 			<label>Nome</label>
-			<input type="text" name="nome" value="${produto.nome}">
+			<input type="text" id="nome" name="nome" value="${produto.nome}">
 			<p style="color:red">${ErroNomeProduto}</p>
 		
 			<label>Quantidade</label>
-			<input type="text" name="quantidade" value="${produto.quantidade}">
+			<input type="text" id="quantidade" name="quantidade" value="${produto.quantidade}">
 		
 			<label>Valor</label>
-			<input type="text" name="valor" value="${produto.valor}">
+			<input type="text" id="valor" name="valor" value="${produto.valor}">
 		
 			<input type="submit" value="Cadastrar"> 
 			<input type="submit" value="Cancelar" onclick="document.getElementById('formulario').action='CadastrarProdutos?acao=reset'">
@@ -61,5 +61,21 @@
 			</table>
 		</div>
 	</div>
+	
+	<script>
+		function validarCadastro(){
+			if(document.getElementById("nome").value === ""){
+				alert("O nome do produto deve ser informado");
+				return false;
+			}else if(document.getElementById("quantidade").value === ""){
+				alert("A quantidade deve ser informada");
+				return false;
+			}else if(document.getElementById("valor").value === ""){
+				alert("O valor deve ser Informado");
+				return false;
+			}
+			return true;
+		}
+	</script>
 </body>
 </html>

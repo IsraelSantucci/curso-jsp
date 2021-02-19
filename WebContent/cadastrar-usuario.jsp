@@ -17,7 +17,7 @@
 		
 		<h3 id="msg-login-repetido">${msg}</h3>
 		
-		<form id="formCadastro" action="CadastrarUsuario" method="post" autocomplete="off" onsubmit="return validarCampos() ? true : false">
+		<form id="formCadastro" action="CadastrarUsuario" method="post" autocomplete="off" onsubmit="return validarCampos()">
 		
 			<label for="id">Id: </label> 
 			<input type="text" name="id" readonly="readonly" value="${usuario.id }" /> 
