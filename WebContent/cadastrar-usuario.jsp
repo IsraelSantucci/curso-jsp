@@ -8,6 +8,13 @@
 <title>Cadastrar Usuarios</title>
 <link rel="stylesheet" href="resources/css/cadastro.css">
 <link rel="stylesheet" href="resources/css/table.css">
+
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+
+  
+
 </head>
 <body>
 
@@ -31,9 +38,25 @@
 			<label for="telefone">Telefone:</label>
 			<input type="text" id="telefone" name="telefone" value="${usuario.telefone }">
 			
+			<label>Cep:</label>
+			<input type="text" id="cep" name="cep" onblur="consultarCep()" value="${usuario.cep }">
+			
+			<label>Rua:</label>
+			<input type="text" id="rua" name="rua" value="${usuario.rua }">
+			
+			<label>Bairro:</label>
+			<input type="text" id="bairro" name="bairro" value="${usuario.bairro }">
+			
+			<label>Cidade:</label>
+			<input type="text" id="cidade" name="cidade" value="${usuario.cidade }">
+
+			<label>Estado:</label>
+			<input type="text" id="estado" name="estado" value="${usuario.estado }">	
+				
 			<label for="senha"> Senha:</label> 
 			<input id="senha" type="password" name="senha" value="${usuario.senha }"  /> 
 			<input type="checkbox" onclick="exibirSenha()">
+					
 			<input type="submit" value="Cadastrar"> <input type="submit" value="Cancelar" onclick="document.getElementById('formCadastro').action='CadastrarUsuario?acao=reset'">
 		</form>
 	</div>
@@ -52,6 +75,11 @@
 						<th>Login</th>
 						<th>Nome</th>
 						<th>Telefone</th>
+						<th>Cep</th>
+						<th>Rua</th>
+						<th>Bairro</th>
+						<th>Cidade</th>
+						<th>Estado</th>
 						<th></th>
 						<th></th>
 
@@ -66,6 +94,11 @@
 							<td data-title="Login"><c:out value="${usuario.login }"></c:out></td>
 							<td data-title="Nome"><c:out value="${usuario.nome }"></c:out></td>
 							<td data-title="Telefone"><c:out value="${usuario.telefone }"></c:out></td>
+							<td data-title="Cpf"><c:out value="${usuario.cep }"></c:out></td>
+							<td data-title="Rua"><c:out value="${usuario.rua }"></c:out></td>
+							<td data-title="Bairro"><c:out value="${usuario.bairro }"></c:out></td>
+							<td data-title="Cidade"><c:out value="${usuario.cidade }"></c:out></td>
+							<td data-title="Estado"><c:out value="${usuario.estado }"></c:out></td>
 							<td class="select" ><a class="button-editar"
 								href="CadastrarUsuario?acao=editar&id=${usuario.id}"><img src="resources/img/editar.png" width="30px" height="30px" alt="Editar" title="Editar"></a></td>
 							<td class="select" ><a class="button-excluir"
@@ -106,6 +139,24 @@
 			}else{
 				return true;
 			}
+		}
+		
+		function consultarCep(){
+			var cep = $("#cep").val();
+			$.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+
+                if (!("erro" in dados)) {
+               
+                    $("#rua").val(dados.logradouro);
+                    $("#bairro").val(dados.bairro);
+                    $("#cidade").val(dados.localidade);
+                    $("#estado").val(dados.uf);
+                    
+                }else {     
+                    alert("CEP não encontrado.");
+                }
+            });
+			
 		}
 	</script>
 </body>

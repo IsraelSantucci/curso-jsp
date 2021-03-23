@@ -21,12 +21,17 @@ public class UsuarioDAO {
 	public void salvar(Usuario usuario) {
 
 		try {
-			String sql = "insert into usuario (login,nome, senha,telefone) values (?,?,?,?)";
+			String sql = "insert into usuario (login, nome, senha, telefone, cep, rua, bairro, cidade, estado) values (?,?,?,?,?,?,?,?,?)";
 			PreparedStatement insert = connection.prepareStatement(sql);
 			insert.setString(1, usuario.getLogin());
 			insert.setString(2, usuario.getNome());
 			insert.setString(3, usuario.getSenha());
 			insert.setString(4, usuario.getTelefone());
+			insert.setString(5, usuario.getCep());
+			insert.setString(6, usuario.getRua());
+			insert.setString(7, usuario.getBairro());
+			insert.setString(8, usuario.getCidade());
+			insert.setString(9, usuario.getEstado());
 			insert.execute();
 			connection.commit();
 		} catch (Exception e) {
@@ -56,6 +61,11 @@ public class UsuarioDAO {
 			usuario.setSenha(result.getString("senha"));
 			usuario.setId(Long.valueOf(result.getLong("id")));
 			usuario.setTelefone(result.getString("telefone"));
+			usuario.setCep(result.getString("cep"));
+			usuario.setRua(result.getString("rua"));
+			usuario.setBairro(result.getString("bairro"));
+			usuario.setCidade(result.getString("cidade"));
+			usuario.setEstado(result.getString("estado"));
 			usuarios.add(usuario);
 		}
 
@@ -92,6 +102,11 @@ public class UsuarioDAO {
 			usuario.setNome(result.getString("nome"));
 			usuario.setSenha(result.getString("senha"));
 			usuario.setTelefone(result.getString("telefone"));
+			usuario.setCep(result.getString("cep"));
+			usuario.setRua(result.getString("rua"));
+			usuario.setBairro(result.getString("bairro"));
+			usuario.setCidade(result.getString("cidade"));
+			usuario.setEstado(result.getString("estado"));
 			return usuario;
 		}
 
@@ -101,13 +116,18 @@ public class UsuarioDAO {
 	public void atualizar(Usuario usuario) {
 
 		try {
-			String sql = "UPDATE usuario SET login= ?, nome= ?, senha= ?, telefone= ? where id= '" + usuario.getId()
+			String sql = "UPDATE usuario SET login= ?, nome= ?, senha= ?, telefone= ?, cep = ?, rua = ?, bairro = ?, cidade = ?, estado = ? where id= '" + usuario.getId()
 					+ "'";
 			PreparedStatement atualizar = connection.prepareStatement(sql);
 			atualizar.setString(1, usuario.getLogin());
 			atualizar.setString(2, usuario.getNome());
 			atualizar.setString(3, usuario.getSenha());
 			atualizar.setString(4, usuario.getTelefone());
+			atualizar.setString(5, usuario.getCep());
+			atualizar.setString(6, usuario.getRua());
+			atualizar.setString(7, usuario.getBairro());
+			atualizar.setString(8, usuario.getCidade());
+			atualizar.setString(9, usuario.getEstado());
 			atualizar.executeUpdate();
 			connection.commit();
 		} catch (Exception e) {
@@ -185,10 +205,8 @@ public class UsuarioDAO {
 		if (result.next()) {
 			Usuario usuario = new Usuario();
 			usuario.setId(result.getLong("id"));
-			usuario.setLogin(result.getString("login"));
-			usuario.setNome(result.getString("nome"));
-			usuario.setSenha(result.getString("senha"));
-			usuario.setTelefone(result.getString("telefone"));
+ 			usuario.setCidade(result.getString("cidade"));
+			usuario.setEstado(result.getString("estado"));
 			return usuario;
 		}
 

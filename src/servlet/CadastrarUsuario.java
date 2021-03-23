@@ -87,6 +87,11 @@ public class CadastrarUsuario extends HttpServlet {
 			String nome = request.getParameter("nome");
 			String senha = request.getParameter("senha");
 			String telefone = request.getParameter("telefone");
+			String cep = request.getParameter("cep");
+			String rua = request.getParameter("rua");
+			String bairro = request.getParameter("bairro");
+			String cidade = request.getParameter("cidade");
+			String estado = request.getParameter("estado");
 
 			Usuario usuario = new Usuario();
 			usuario.setId(!id.isEmpty() ? Long.parseLong(id) : 0);
@@ -94,6 +99,11 @@ public class CadastrarUsuario extends HttpServlet {
 			usuario.setNome(nome);
 			usuario.setSenha(senha);
 			usuario.setTelefone(telefone);
+			usuario.setCep(cep);
+			usuario.setRua(rua);
+			usuario.setBairro(bairro);
+			usuario.setCidade(cidade);
+			usuario.setEstado(estado);
 
 			try {
 				boolean manterDados = false;
