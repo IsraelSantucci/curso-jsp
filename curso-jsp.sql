@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 23-Mar-2021 às 02:23
+-- Tempo de geração: 14-Fev-2021 às 04:09
 -- Versão do servidor: 10.4.17-MariaDB
 -- versão do PHP: 8.0.0
 
@@ -42,8 +42,7 @@ INSERT INTO `produto` (`codigo`, `nome`, `quantidade`, `valor`) VALUES
 (21, 'arroz', 10, 20),
 (27, 'feijão', 30, 35),
 (28, 'milho', 500, 80),
-(40, 'toalha de banho', 10, 5),
-(42, 'capa de chuva', 2, 12);
+(40, 'toalha de banho', 10, 5);
 
 -- --------------------------------------------------------
 
@@ -56,20 +55,17 @@ CREATE TABLE `usuario` (
   `login` varchar(50) NOT NULL,
   `senha` varchar(30) NOT NULL,
   `nome` varchar(30) NOT NULL,
-  `telefone` varchar(20) NOT NULL,
-  `cep` varchar(15) NOT NULL,
-  `rua` varchar(50) NOT NULL,
-  `bairro` varchar(30) NOT NULL,
-  `cidade` varchar(30) NOT NULL,
-  `estado` varchar(20) NOT NULL
+  `telefone` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `login`, `senha`, `nome`, `telefone`, `cep`, `rua`, `bairro`, `cidade`, `estado`) VALUES
-(99, 'admin', 'admin', 'nome do admin', '9999-9999', '01010-000	', 'Rua São Bento', 'Centro', 'São Paulo', 'SP');
+INSERT INTO `usuario` (`id`, `login`, `senha`, `nome`, `telefone`) VALUES
+(61, 'admin', 'admin', 'admin nome', '35 84553688'),
+(75, 'teste', '123456', 'nome teste', '99 9999-9999'),
+(84, 'isantucci', '123', 'israel santucci', '35 99885522');
 
 --
 -- Índices para tabelas despejadas
@@ -95,13 +91,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `produto`
 --
 ALTER TABLE `produto`
-  MODIFY `codigo` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `codigo` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
