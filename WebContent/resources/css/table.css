@@ -1,5 +1,5 @@
 .div-tabela{
-	margin-bottom: 50px;
+	margin-bottom: 20px;
 	
 }
 .tabela {
@@ -21,7 +21,7 @@ tr {
   padding-bottom: 10px;
 }
 td {
-  padding: 10px 50px 0;
+  padding: 10px 20px 0;
   text-align: center;
   
 }

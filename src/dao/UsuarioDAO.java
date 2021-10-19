@@ -205,6 +205,7 @@ public class UsuarioDAO {
 		if (result.next()) {
 			Usuario usuario = new Usuario();
 			usuario.setId(result.getLong("id"));
+			usuario.setNome(result.getString("nome"));
  			usuario.setCidade(result.getString("cidade"));
 			usuario.setEstado(result.getString("estado"));
 			return usuario;

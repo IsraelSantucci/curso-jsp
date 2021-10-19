@@ -18,12 +18,11 @@
 </head>
 <body>
 
-	<h3>usuario: ${sessionScope.usuarioLogado.nome}</h3>
+	<h3>usuario: ${usuarioLogado.nome}</h3>
 	<div class="form-style-6">
 		<h1>Cadastrar Usuarios</h1>
 		
 		<h3 id="msg-login-repetido">${msg}</h3>
-		
 		<form id="formCadastro" action="CadastrarUsuario" method="post" autocomplete="off" onsubmit="return validarCampos()">
 		
 			<label for="id">Id: </label> 
@@ -57,7 +56,8 @@
 			<input id="senha" type="password" name="senha" value="${usuario.senha }"  /> 
 			<input type="checkbox" onclick="exibirSenha()">
 					
-			<input type="submit" value="Cadastrar"> <input type="submit" value="Cancelar" onclick="document.getElementById('formCadastro').action='CadastrarUsuario?acao=reset'">
+			<input type="submit" value="Cadastrar"> 
+			<input type="submit" value="Cancelar" onclick="document.getElementById('formCadastro').action='CadastrarUsuario?acao=reset'">
 		</form>
 	</div>
 	<br>
@@ -74,12 +74,12 @@
 						<th>Id</th>
 						<th>Login</th>
 						<th>Nome</th>
-						<th>Telefone</th>
 						<th>Cep</th>
 						<th>Rua</th>
 						<th>Bairro</th>
 						<th>Cidade</th>
 						<th>Estado</th>
+						<th></th>
 						<th></th>
 						<th></th>
 
@@ -93,16 +93,16 @@
 							<td data-title="Id"><c:out value="${usuario.id }"></c:out></td>
 							<td data-title="Login"><c:out value="${usuario.login }"></c:out></td>
 							<td data-title="Nome"><c:out value="${usuario.nome }"></c:out></td>
-							<td data-title="Telefone"><c:out value="${usuario.telefone }"></c:out></td>
 							<td data-title="Cpf"><c:out value="${usuario.cep }"></c:out></td>
 							<td data-title="Rua"><c:out value="${usuario.rua }"></c:out></td>
 							<td data-title="Bairro"><c:out value="${usuario.bairro }"></c:out></td>
 							<td data-title="Cidade"><c:out value="${usuario.cidade }"></c:out></td>
 							<td data-title="Estado"><c:out value="${usuario.estado }"></c:out></td>
 							<td class="select" ><a class="button-editar"
-								href="CadastrarUsuario?acao=editar&id=${usuario.id}"><img src="resources/img/editar.png" width="30px" height="30px" alt="Editar" title="Editar"></a></td>
+								href="CadastrarUsuario?acao=editar&id=${usuario.id}"><img src="resources/img/editar.png" width="20px" height="20px" alt="Editar" title="Editar"></a></td>
 							<td class="select" ><a class="button-excluir"
-								href="CadastrarUsuario?acao=delete&id=${usuario.id}"><img src="resources/img/excluir.png" width="30px" height="30px" alt="Excluir" title="Excluir"></a></td>
+								href="CadastrarUsuario?acao=delete&id=${usuario.id}"><img src="resources/img/excluir.png" width="20px" height="20px" alt="Excluir" title="Excluir"></a></td>
+							<td><a href="cadastrarTelefones"><img  src="resources/img/telefone.png" title="telefones" width="20px" height="20px"></a></td>
 						</tr>
 
 					</c:forEach>
